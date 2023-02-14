@@ -10,4 +10,4 @@ Simple crud program using react-typescript, nodejs and mongoDB.
  
  
  ###### Author : Aniceto Jolela 🥰
- Meu  | [Linkedin](https://www.linkedin.com/in/aniceto-jolela-076547184/))
+ My  | [Linkedin](https://www.linkedin.com/in/aniceto-jolela-076547184/))
