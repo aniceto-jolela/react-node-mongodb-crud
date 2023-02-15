@@ -5,7 +5,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import DatasetIcon from '@mui/icons-material/Dataset';
 import PeopleIcon from "@mui/icons-material/People";
-import LayersIcon from "@mui/icons-material/Layers";
+import HomeIcon from '@mui/icons-material/Home';
 
 export default function MainListItems() {
   const [setSelected, getSelected] = React.useState(1);
@@ -26,7 +26,7 @@ export default function MainListItems() {
       >
         <ListItemButton>
           <ListItemIcon>
-            <LayersIcon color={setSelected === 1 ? "info" : "inherit"} />
+            <HomeIcon color={setSelected === 1 ? "info" : "inherit"} />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItemButton>
