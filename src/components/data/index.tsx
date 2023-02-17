@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import { Toolbar } from "@mui/material";
 import CustomizedBreadcrumbs from "../../share/navigation/breadcrumbs";
 import DataGridDemo from "./datagrid";
-
+import Button from "@mui/material/Button";
 
 
 const Table=()=>{
@@ -28,6 +28,7 @@ const Table=()=>{
       <Toolbar />
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <CustomizedBreadcrumbs Label="Dados" />
+
         <Grid
           container
           spacing={2}
@@ -36,6 +37,11 @@ const Table=()=>{
           alignItems="center"
           style={{ background: "#FFF",paddingTop:100,paddingBottom:40 }}
         >
+          <Grid item xs={6} md={8} style={{marginTop:-50,marginBottom:30}}>
+            <Button variant="outlined" color="error" size="small">
+              Eiminar
+            </Button>
+          </Grid>
           <DataGridDemo/>
           
         </Grid>
