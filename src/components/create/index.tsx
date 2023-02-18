@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect} from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -6,8 +6,14 @@ import Container from "@mui/material/Container";
 import { Toolbar, Typography } from "@mui/material";
 import CustomizedBreadcrumbs from "../../share/navigation/breadcrumbs";
 import Button from "@mui/material/Button";
+import api from "../../api";
 
 export default function Create() {
+  useEffect(()=>{
+    api.get('dados').then((req)=>{
+      console.log(req.data)
+    })
+  },[])
   return (
     <Box
       component="form"
