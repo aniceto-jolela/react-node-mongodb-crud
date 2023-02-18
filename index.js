@@ -1,14 +1,7 @@
-const express = require("express");
-const cors = require("cors");
-const Port = 5000;
+//const express = require('express')
+const App = require("./app");
+const {Route,Path} = require("./routes/routes");
 
-const App = express();
-App.use(cors());
+//App.use(express.static(Path.join(__dirname,'routs')))
+//App.use(Route)
 
-App.get("/dados", (req, res) => {
-  res.json([{ nome: "Aniceto" }, { email: "author@gmail.com" }]);
-});
-
-App.listen(Port, () => {
-  console.log("Connect port 5000");
-});
