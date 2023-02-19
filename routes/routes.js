@@ -10,15 +10,35 @@ Route.get("/", (req, res) => {
 });
 
 Route.get("/create", (req, res) => {
-  res.json([{ nome: "Aniceto" }, { email: "author@gmail.com" }]);
+  const newUsuario={
+    nome: String,
+    sobrenome: String,
+    email: String
+  }
+  new Usuario(newUsuario).save().then(()=>{
+    console.log('Cadastrado com sucesso!')
+  }).catch((err)=>{
+    console.log('Usuário não cadastrado.'+err)
+  })
 });
-Route.get("Update", (req, res) => {});
-Route.get("delete", (req, res) => {});
+Route.get("Update", (req, res) => {
+  Usuario.findOne({_id:req.params.id}).then((usuario)=>{
+    console.log('Usuário editado com sucesso')
+  }).catch((err)=>{
+    console.log('Erro ao actualizar usuário.')
+  })
+});
+Route.get("delete", (req, res) => {
+  Usuario.deleteOne({_id:req.params.id}).then((usuario)=>{
+    console.log('Usuário deletado com sucesso.')
+  }).catch((err)=>{
+    console.log('Erro ao deletar')
+  })
+});
 
 Route.get("/read", (req, res) => {
   Usuario.find()
     .then((usuario) => {
-      console.log(usuario.length);
       res.json([usuario]);
     })
     .catch((err) => {
