@@ -10,7 +10,7 @@ import api from "../../api";
 
 export default function Create() {
   useEffect(()=>{
-    api.get('dados').then((req)=>{
+    api.get('read').then((req)=>{
       console.log(req.data)
     })
   },[])
