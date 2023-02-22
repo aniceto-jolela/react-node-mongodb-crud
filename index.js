@@ -1,2 +1,2 @@
-const App = require("./config/app");
-const {Route,Path} = require("./routes/routes");
+require("./config/app");
+require("./routes/routes");
