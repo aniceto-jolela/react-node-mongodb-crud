@@ -4,10 +4,10 @@ const usuarioController = require("../controllers/usuario.controller");
 const Route = App._router;
 
 Route.get("/", usuarioController.home);
-Route.get("/usuario", usuarioController.read);
-Route.post("/usuario", usuarioController.create);
+Route.get("/user", usuarioController.read);
+Route.post("/user", usuarioController.create);
 Route.post("/content/:id",contentController.update)
-Route.delete("/usuario/:id", usuarioController.delete);
+Route.delete("/user/:id", usuarioController.delete);
 
 module.exports = {
   Route,
