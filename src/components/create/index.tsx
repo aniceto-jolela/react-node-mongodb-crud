@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -9,11 +9,33 @@ import Button from "@mui/material/Button";
 import api from "../../api";
 
 export default function Create() {
-  useEffect(()=>{
-    api.get('read').then((req)=>{
-      console.log(req.data)
-    })
-  },[])
+  const [sms, setSms] = useState("");
+
+  const initialValues = {
+    nome: "",
+    sobrenome: "",
+    email: "",
+  };
+
+  const handleInputChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+  const [formValues, setFormValues] = useState(initialValues);
+  const handleSubmit = () => {
+    formValues.nome === ""
+      ? setSms("Campo obrigatório")
+      : formValues.sobrenome === ""
+      ? setSms("Campo obrigatório")
+      : api
+          .post("user/", formValues)
+          .then((req) => {
+            console.log(req.data);
+          })
+          .catch((err) => console.log(err));
+    setFormValues({ nome: "", sobrenome: "", email: "" });
+  };
+
   return (
     <Box
       component="form"
@@ -32,33 +54,39 @@ export default function Create() {
       <Toolbar />
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <CustomizedBreadcrumbs Label="Cadastro" />
+
         <Grid
           container
           spacing={2}
           justifyContent="center"
           direction="column"
           alignItems="center"
-          style={{ background: "#FFF",paddingTop:100,paddingBottom:40 }}
+          style={{ background: "#FFF", paddingTop: 100, paddingBottom: 40 }}
         >
           <Grid item xs={6} md={12}>
             <Typography>Nome</Typography>
             <TextField
-              required
               id="outlined-required"
               label="nome"
               defaultValue=""
               size="small"
-              helperText="Digite o nome"
+              helperText={formValues.nome === "" ? sms : ""}
+              name="nome"
+              value={formValues.nome}
+              onChange={handleInputChange}
             />
           </Grid>
           <Grid item xs={6} md={4}>
             <Typography>Sobrenome</Typography>
             <TextField
-              required
               id="outlined-required"
               label="Sobrenome"
               defaultValue=""
+              helperText={formValues.sobrenome === "" ? sms : ""}
               size="small"
+              name="sobrenome"
+              value={formValues.sobrenome}
+              onChange={handleInputChange}
             />
           </Grid>
           <Grid item xs={6} md={4}>
@@ -68,10 +96,13 @@ export default function Create() {
               label="nome@provedor.com"
               defaultValue=""
               size="small"
+              name="email"
+              value={formValues.email}
+              onChange={handleInputChange}
             />
           </Grid>
           <Grid item xs={6} md={8}>
-            <Button variant="outlined" size="small">
+            <Button variant="outlined" size="small" onClick={handleSubmit}>
               Cadastrar
             </Button>
           </Grid>
